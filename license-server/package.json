@@ -1,0 +1,21 @@
+{
+  "name": "tiktok-license-server",
+  "version": "1.0.0",
+  "description": "TikTok扩展授权验证服务器",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "build": "echo 'No build step required'"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "sqlite3": "^5.1.6",
+    "jsonwebtoken": "^9.0.2",
+    "crypto": "^1.0.1",
+    "cors": "^2.8.5"
+  },
+  "keywords": ["license", "auth", "tiktok", "extension"],
+  "author": "大胜工作室",
+  "license": "MIT"
+}
