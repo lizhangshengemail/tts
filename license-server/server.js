@@ -9,8 +9,20 @@ const db = new Database();
 
 // 中间件
 app.use(cors({
-    origin: ['chrome-extension://*', 'https://seller.us.tiktokshopglobalselling.com', 'https://seller.us.tiktokglobalshop.com'],
-    credentials: true
+    origin: function(origin, callback) {
+        // 允许chrome扩展、TikTok域名以及无origin的请求(如Postman)
+        if (!origin || 
+            origin.startsWith('chrome-extension://') || 
+            origin === 'https://seller.us.tiktokshopglobalselling.com' ||
+            origin === 'https://seller.us.tiktokglobalshop.com') {
+            callback(null, true);
+        } else {
+            callback(null, false);
+        }
+    },
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
 }));
 app.use(express.json());
 app.use(express.static('public'));
